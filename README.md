@@ -1,4 +1,15 @@
-# Pavithira J — Full Stack Developer Portfolio
+# Portfolio Website
+
+## Live Demo
+https://portfolio-website-p5o1.onrender.com
+
+## Technologies Used
+- Python
+- Flask
+- HTML
+- CSS
+- JavaScript
+- # Pavithira J — Full Stack Developer Portfolio
 
 A premium, responsive portfolio site with a Flask + MySQL backend.
 Dark theme, blue/purple gradients, glassmorphism cards, typing effect,
