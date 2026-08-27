@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ profile.name }} | {{ profile.title }}</title>
+<meta name="description" content="{{ profile.summary }}">
+<meta name="theme-color" content="#0a0e1a">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ profile.name }} | {{ profile.title }}">
+<meta property="og:description" content="{{ profile.summary }}">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- Ambient background -->
+<div class="bg-orbs" aria-hidden="true">
+  <span class="orb orb-blue"></span>
+  <span class="orb orb-purple"></span>
+</div>
+
+<!-- Nav -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">PJ<span class="dot">.</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certificates</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Full Stack Developer &middot; Python / Flask</p>
+      <h1 class="hero-name">{{ profile.name }}</h1>
+      <h2 class="hero-role">
+        <span id="typedRole"></span><span class="cursor" aria-hidden="true">|</span>
+      </h2>
+      <p class="hero-summary">{{ profile.summary }}</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <a href="#about" class="scroll-cue" aria-label="Scroll to About section">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="section-inner">
+      <p class="section-eyebrow">About</p>
+      <h2 class="section-title">Building things that work, end to end</h2>
+      <div class="about-grid">
+        <p class="about-text">{{ profile.summary }}</p>
+        <div class="about-stats glass-card">
+          <div class="stat">
+            <span class="stat-num">5</span>
+            <span class="stat-label">Projects built</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">8</span>
+            <span class="stat-label">Certifications</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">2</span>
+            <span class="stat-label">Core stacks &mdash; Python &amp; JS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <div class="section-inner">
+      <p class="section-eyebrow">Skills</p>
+      <h2 class="section-title">Tech stack</h2>
+      <div class="skills-grid">
+        {% for category, items in skills.items() %}
+        <div class="skill-card glass-card">
+          <h3 class="skill-category">{{ category }}</h3>
+          <ul class="skill-list">
+            {% for item in items %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section" id="projects">
+    <div class="section-inner">
+      <p class="section-eyebrow">Projects</p>
+      <h2 class="section-title">Selected work</h2>
+      <div class="projects-grid">
+        {% for project in projects %}
+        <article class="project-card glass-card">
+          <div class="project-glow" aria-hidden="true"></div>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-desc">{{ project.description }}</p>
+          <div class="project-tech">
+            {% for tech in project.tech %}
+            <span class="tech-pill">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section" id="education">
+    <div class="section-inner">
+      <p class="section-eyebrow">Education</p>
+      <h2 class="section-title">Academic background</h2>
+      <div class="timeline">
+        {% for edu in education %}
+        <div class="timeline-item glass-card">
+          <h3 class="timeline-degree">{{ edu.degree }}</h3>
+          <p class="timeline-meta">{{ edu.institution }} &middot; {{ edu.period }}</p>
+          <p class="timeline-details">{{ edu.details }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="section" id="certifications">
+    <div class="section-inner">
+      <p class="section-eyebrow">Certifications</p>
+      <h2 class="section-title">Courses &amp; credentials</h2>
+      <div class="cert-grid">
+        {% for cert in certifications %}
+        <a href="{{ cert.link }}" target="_blank" class="cert-card glass-card">
+          <span class="cert-icon" aria-hidden="true">&#127891;</span>
+          <div>
+            <h3 class="cert-name">{{ cert.name }}</h3>
+            <p class="cert-issuer">{{ cert.issuer }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="section-title">Let's build something</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+    <p>Have a project in mind, or just want to say hi? Send a message and I'll get back to you.</p>
+
+    <ul class="contact-list">
+        <li>
+            <span class="contact-label">Email</span>
+            <span id="contactEmail">
+                <a href="mailto:{{ socials.email }}">{{ socials.email }}</a>
+            </span>
+        </li>
+
+        <li>
+            <span class="contact-label">GitHub</span>
+            <span>
+                <a href="{{ socials.github }}" target="_blank">
+                    {{ socials.github }}
+                </a>
+            </span>
+        </li>
+
+        <li>
+            <span class="contact-label">LinkedIn</span>
+            <span>
+                <a href="{{ socials.linkedin }}" target="_blank">
+                    {{ socials.linkedin }}
+                </a>
+            </span>
+        </li>
+
+        <li>
+            <span class="contact-label">Resume</span>
+            <span>
+                <a href="{{ url_for('static', filename='resume/Pavithira_Resume.pdf') }}" target="_blank">
+                 View Resume
+                </a>
+                |
+                <a href="{{ url_for('static', filename='resume/Pavithira_Resume.pdf') }}" download>
+                    Download Resume
+                </a>
+            </span>
+        </li>
+    </ul>
+</div>
+        <form class="contact-form glass-card" id="contactForm" novalidate>
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+            <span class="form-error" id="err-name"></span>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <span class="form-error" id="err-email"></span>
+          </div>
+          <div class="form-row">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+            <span class="form-error" id="err-subject"></span>
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <span class="form-error" id="err-message"></span>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">
+            <span class="btn-text">Send Message</span>
+          </button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> {{ profile.name }}. Built with Flask, and a lot of coffee.</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
