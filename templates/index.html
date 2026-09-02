@@ -111,26 +111,40 @@
   </section>
 
   <!-- Projects -->
-  <section class="section" id="projects">
-    <div class="section-inner">
-      <p class="section-eyebrow">Projects</p>
-      <h2 class="section-title">Selected work</h2>
-      <div class="projects-grid">
-        {% for project in projects %}
-        <article class="project-card glass-card">
-          <div class="project-glow" aria-hidden="true"></div>
-          <h3 class="project-title">{{ project.title }}</h3>
-          <p class="project-desc">{{ project.description }}</p>
-          <div class="project-tech">
-            {% for tech in project.tech %}
-            <span class="tech-pill">{{ tech }}</span>
-            {% endfor %}
-          </div>
-        </article>
-        {% endfor %}
-      </div>
+<section class="section" id="projects">
+  <div class="section-inner">
+    <p class="section-eyebrow">Projects</p>
+    <h2 class="section-title">Selected work</h2>
+
+    <div class="projects-grid">
+      {% for project in projects %}
+      <article class="project-card glass-card">
+        <div class="project-glow" aria-hidden="true"></div>
+
+        <h3 class="project-title">{{ project.title }}</h3>
+
+        <p class="project-desc">{{ project.description }}</p>
+
+        <div class="project-tech">
+          {% for tech in project.tech %}
+          <span class="tech-pill">{{ tech }}</span>
+          {% endfor %}
+        </div>
+
+        {% if project.demo %}
+        <div class="project-links">
+          <a href="{{ project.demo }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Live Demo
+          
+          </a>
+        </div>
+        {% endif %}
+
+      </article>
+      {% endfor %}
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Education -->
   <section class="section" id="education">
