@@ -90,10 +90,11 @@ PROJECTS = [
         "id": 4,
         "title": "Calculator Website",
         "description": (
-            "A responsive calculator with a polished UI, keyboard support, "
-            "and clean JavaScript logic under the hood."
+           "A responsive calculator with a polished UI, keyboard support, "
+           "and clean JavaScript logic under the hood."
         ),
         "tech": ["HTML", "CSS", "JavaScript"],
+        "demo": "https://pavithirajeganathan.github.io/CalcFlow/",
     },
     {
         "id": 5,
