@@ -111,7 +111,7 @@ img { max-width: 100%; display: block; }
   transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .project-links {
-  margin-top: 22px;
+  margin-top: 20px;
 }
 
 /* ---------- Nav ---------- */
