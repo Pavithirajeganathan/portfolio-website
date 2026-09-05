@@ -85,6 +85,7 @@ PROJECTS = [
             "make everyday librarian tasks fast and simple."
         ),
         "tech": ["Python", "Flask", "MySQL"],
+        "demo": "https://library-management-system-2-zaxv.onrender.com",
     },
     {
         "id": 4,
